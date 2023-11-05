@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/cardview_shadow_end_color"
+    android:padding="16dp"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nomeCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Cliente" />
+
+        <TextView
+            android:id="@+id/cpfCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CPF do Cliente" />
+
+        <TextView
+            android:id="@+id/nomeAnimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Animal" />
+
+        <TextView
+            android:id="@+id/racaAnimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Raça do Animal" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/botaoRemoverCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:text="Remover"
+        android:textAllCaps="false"/>
+
+
+</LinearLayout>
