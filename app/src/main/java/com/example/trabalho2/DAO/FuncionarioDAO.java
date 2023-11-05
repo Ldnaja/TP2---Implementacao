@@ -122,6 +122,17 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
+    public int atualizarSenhaFuncionario(long funcionarioId, String novaSenha) {
+        ContentValues values = new ContentValues();
+        values.put(Database.COL_SENHA, novaSenha);
+
+        return database.update(Database.TABLE_FUNCIONARIOS, values,
+                Database.COL_ID_FUNCIONARIO + " = ?",
+                new String[]{String.valueOf(funcionarioId)});
+    }
+
+
+
     @SuppressLint("Range")
     private Funcionario cursorToFuncionario(Cursor cursor) {
         Funcionario funcionario = new Funcionario();

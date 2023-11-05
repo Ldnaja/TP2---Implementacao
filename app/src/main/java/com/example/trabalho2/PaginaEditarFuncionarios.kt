@@ -1,7 +1,9 @@
 package com.example.trabalho2
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -19,13 +21,16 @@ class PaginaEditarFuncionarios : AppCompatActivity() {
 
     private lateinit var botaoCadastrarFuncionarioPagina: Button
     private lateinit var botaoVerFuncionariosPagina: Button
+    private lateinit var botaoAtualizarFuncionarioPagina: Button
 
     private lateinit var funcionarioDAO: FuncionarioDAO
 
     private lateinit var recyclerView: RecyclerView
     private var adapter: funcionarioAdaptador? = null
-    private var std: FuncionarioDAO? = null
+    private var std: Funcionario? = null
 
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pagina_editar_funcionarios)
@@ -34,6 +39,7 @@ class PaginaEditarFuncionarios : AppCompatActivity() {
         campoSenhaPaginaFuncionario = findViewById(R.id.campoSenhaPaginaFuncionario)
         botaoCadastrarFuncionarioPagina = findViewById(R.id.botaoCadastrarFuncionarioPagina)
         botaoVerFuncionariosPagina = findViewById(R.id.botaoVerFuncionariosPagina)
+        botaoAtualizarFuncionarioPagina = findViewById(R.id.botaoAtualizarFuncionarioPagina)
         funcionarioDAO = FuncionarioDAO(this)
 
         initView()
@@ -86,10 +92,54 @@ class PaginaEditarFuncionarios : AppCompatActivity() {
             }
         })
 
+        botaoAtualizarFuncionarioPagina.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View) {
+                try {
+                    val senha = campoSenhaPaginaFuncionario.text.toString()
+
+                    std?.let { funcionario ->
+                        if (senha.isNotEmpty()) {
+                            funcionarioDAO.open()
+                            val rowsAffected = funcionarioDAO.atualizarSenhaFuncionario(funcionario.idFuncionario.toLong(), senha)
+                            funcionarioDAO.close()
+
+                            if (rowsAffected > 0) {
+                                exibirMensagem("Senha do funcionário atualizada com sucesso")
+                                campoLoginPaginaFuncionario.text = Editable.Factory.getInstance().newEditable(funcionario.login)
+                                campoSenhaPaginaFuncionario.text = Editable.Factory.getInstance().newEditable("")  // Limpar o campo de senha
+                                getFuncionarios()
+                            } else {
+                                exibirMensagem("Erro ao atualizar senha do funcionário")
+                            }
+                        } else {
+                            exibirMensagem("Preencha a senha e selecione um funcionário para atualizar")
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    exibirMensagem("Erro ao atualizar senha do funcionário")
+                }
+            }
+        })
+
+
         adapter?.setOnClickDeleteItem{
             deletarFuncionario(it.toLong())
         }
+
+        adapter?.setOnClickItem { funcionarioId ->
+            val funcionario = adapter?.getFuncionarioById(funcionarioId)
+            funcionario?.let {
+                Toast.makeText(this, "Funcionário ${it.login}", Toast.LENGTH_SHORT).show()
+                campoLoginPaginaFuncionario.text = Editable.Factory.getInstance().newEditable(it.login)
+                campoSenhaPaginaFuncionario.text = Editable.Factory.getInstance().newEditable("")  // Limpar o campo de senha
+                std = it
+            }
+        }
+
+
     }
+
 
     private fun deletarFuncionario(funcioarioId: Long){
         val builder = AlertDialog.Builder(this)

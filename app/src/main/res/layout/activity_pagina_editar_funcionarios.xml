@@ -21,7 +21,7 @@
         android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Login do Novo Funcionario"
+        android:hint="Login do Funcionario"
         />
 
     <EditText
@@ -29,7 +29,8 @@
         android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Senha do Novo Funcionario"
+        android:hint="Senha do Funcionario"
+        android:inputType="numberPassword"
         />
 
 
@@ -51,6 +52,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Ver"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/botaoAtualizarFuncionarioPagina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Atualizar"
             android:textAllCaps="false" />
     </LinearLayout>
 

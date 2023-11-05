@@ -13,6 +13,7 @@ import com.example.trabalho2.Entity.Funcionario
 class funcionarioAdaptador : RecyclerView.Adapter<funcionarioAdaptador.funcionarioVerHolder>(){
 
     private var stdList: ArrayList<Funcionario> = ArrayList()
+    private var onClickItem: ((Int) -> Unit)? = null
     private var onClickDeleteItem: ((Int) -> Unit)? = null
 
     fun addItems(stdList: ArrayList<Funcionario>){
@@ -24,6 +25,15 @@ class funcionarioAdaptador : RecyclerView.Adapter<funcionarioAdaptador.funcionar
         onClickDeleteItem = callback
     }
 
+    fun setOnClickItem(callback: (Int) -> Unit){
+        onClickItem = callback
+    }
+
+    fun getFuncionarioById(funcionarioId: Int): Funcionario? {
+        return stdList.find { it.idFuncionario == funcionarioId }
+    }
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = funcionarioVerHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.card_items_funcionario, parent, false)
     )
@@ -33,6 +43,9 @@ class funcionarioAdaptador : RecyclerView.Adapter<funcionarioAdaptador.funcionar
         holder.bindVer(std)
         holder.botaoDeletar.setOnClickListener {
             onClickDeleteItem?.invoke(std.idFuncionario)
+        }
+        holder.itemView.setOnClickListener {
+            onClickItem?.invoke(std.idFuncionario)
         }
     }
 
