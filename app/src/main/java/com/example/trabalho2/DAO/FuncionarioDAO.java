@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.trabalho2.Database;
 import com.example.trabalho2.Entity.Funcionario;
 
+import java.util.ArrayList;
+
 public class FuncionarioDAO {
     private SQLiteDatabase database;
     private Database dbHelper;
@@ -95,6 +97,29 @@ public class FuncionarioDAO {
         }
 
         return null;
+    }
+
+    public void deletarFuncionarioPorId(long funcionarioId) {
+        database.delete(Database.TABLE_FUNCIONARIOS,
+                Database.COL_ID_FUNCIONARIO + " = ?",
+                new String[]{String.valueOf(funcionarioId)});
+    }
+
+    public ArrayList<Funcionario> obterTodosFuncionarios(){
+        ArrayList<Funcionario> funcionarios = new ArrayList<>();
+        Cursor cursor = database.query(Database.TABLE_FUNCIONARIOS, null,
+                null, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Funcionario funcionario = cursorToFuncionario(cursor);
+                funcionarios.add(funcionario);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return funcionarios;
     }
 
     @SuppressLint("Range")
