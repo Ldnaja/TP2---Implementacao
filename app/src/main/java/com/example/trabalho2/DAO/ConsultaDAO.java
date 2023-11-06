@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.trabalho2.Database;
 import com.example.trabalho2.Entity.Consulta;
 
+import java.util.ArrayList;
+
 public class ConsultaDAO {
     private SQLiteDatabase database;
     private Database dbHelper;
@@ -89,6 +91,24 @@ public class ConsultaDAO {
         } else {
             return false; // A consulta não existe
         }
+    }
+
+    public ArrayList<Consulta> obterTodasConsultas(){
+        ArrayList<Consulta> consultas = new ArrayList<>();
+
+        Cursor cursor = database.query(Database.TABLE_CONSULTAS, null, null, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Consulta consulta = cursorToConsulta(cursor);
+                consultas.add(consulta);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return consultas;
     }
 
 
