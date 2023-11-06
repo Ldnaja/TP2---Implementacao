@@ -77,14 +77,21 @@ class MarcarConsulta : AppCompatActivity() {
                         val idVeterinario = veterinario.getIdVeterinario()
 
                         consultaDAO.open()
-                        val idConsulta = consultaDAO.inserirConsulta(idCliente, idVeterinario)
-                        consultaDAO.close()
 
-                        exibirMensagem("Consulta marcada com sucesso!")
+                        // Verificar se a consulta já existe
+                        if (consultaDAO.consultaExiste(idCliente, idVeterinario)) {
+                            exibirMensagem("Essa consulta já foi marcada!")
+                        } else {
+                            val idConsulta = consultaDAO.inserirConsulta(idCliente, idVeterinario)
+                            exibirMensagem("Consulta marcada com sucesso!")
+                        }
+
+                        consultaDAO.close()
                     }
                 }
             }
         })
+
 
 
         botaoMostrarVeterinariosConsulta.setOnClickListener(object: View.OnClickListener{

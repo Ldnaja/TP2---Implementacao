@@ -72,6 +72,26 @@ public class ConsultaDAO {
         }
     }
 
+    public boolean consultaExiste(int idCliente, int idVeterinario) {
+        Cursor cursor = database.query(
+                Database.TABLE_CONSULTAS,
+                null,
+                Database.COL_ID_CLIENTE_CONSULTA + " = ? AND " + Database.COL_ID_VETERINARIO_CONSULTA + " = ?",
+                new String[]{String.valueOf(idCliente), String.valueOf(idVeterinario)},
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.close();
+            return true; // A consulta já existe
+        } else {
+            return false; // A consulta não existe
+        }
+    }
+
+
     @SuppressLint("Range")
     private Consulta cursorToConsulta(Cursor cursor) {
         int idConsulta = cursor.getInt(cursor.getColumnIndex(Database.COL_ID_CONSULTA));
