@@ -24,24 +24,35 @@
         android:id="@+id/buttonEditarFuncionarios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
         android:text="Editar Funcionarios"
-        app:layout_constraintStart_toStartOf="@+id/buttonConsulta"
+        app:layout_constraintStart_toStartOf="@+id/buttonCadrastarVeterinario"
         app:layout_constraintTop_toBottomOf="@+id/buttonCadrastarVeterinario" />
 
     <Button
         android:id="@+id/buttonConsulta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="141dp"
-        android:text="Marcar/Remover Consulta"
+        android:layout_marginBottom="180dp"
+        android:text="Marcar Consulta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <Button
+        android:id="@+id/buttonDesmarcarConsulta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:text="Desmarcar Consulta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEditarFuncionarios"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonCadastrarCliente"
@@ -58,7 +69,7 @@
         android:id="@+id/buttonCadrastarVeterinario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="296dp"
         android:text="Informações dos Veterinarios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -16,6 +16,7 @@ class TelaGerenciamento : AppCompatActivity() {
         val botaoCadastraVeterinario = findViewById<Button>(R.id.buttonCadrastarVeterinario)
         val botaoEditarFuncionario = findViewById<Button>(R.id.buttonEditarFuncionarios)
         val botaoConsulta = findViewById<Button>(R.id.buttonConsulta)
+        val botaoDesmarcarConsulta = findViewById<Button>(R.id.buttonDesmarcarConsulta)
 
         botaoCadastrarCliente.setOnClickListener {
             val intent = Intent(this, PaginaClientes::class.java)
@@ -34,6 +35,11 @@ class TelaGerenciamento : AppCompatActivity() {
 
         botaoConsulta.setOnClickListener {
             val intent = Intent(this, MarcarConsulta::class.java)
+            startActivity(intent)
+        }
+
+        botaoDesmarcarConsulta.setOnClickListener {
+            val intent = Intent(this, DesmarcarConsulta::class.java)
             startActivity(intent)
         }
     }

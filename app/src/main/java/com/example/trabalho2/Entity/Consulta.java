@@ -5,6 +5,12 @@ public class Consulta {
     private int idVeterinario;
     private int idCliente;
 
+    public Consulta(int idConsulta, int idCliente, int idVeterinario) {
+        this.idConsulta = idConsulta;
+        this.idCliente = idCliente;
+        this.idVeterinario = idVeterinario;
+    }
+
     public int getIdConsulta() {
         return idConsulta;
     }

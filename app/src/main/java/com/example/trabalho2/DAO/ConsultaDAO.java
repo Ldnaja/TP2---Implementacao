@@ -26,13 +26,22 @@ public class ConsultaDAO {
         dbHelper.close();
     }
 
-    public long inserirConsulta(Consulta consulta) {
+    /*public long inserirConsulta(Consulta consulta) {
         ContentValues values = new ContentValues();
         values.put(Database.COL_ID_VETERINARIO_CONSULTA, consulta.getIdVeterinario());
         values.put(Database.COL_ID_CLIENTE_CONSULTA, consulta.getIdCliente());
 
         return database.insert(Database.TABLE_CONSULTAS, null, values);
+    }*/
+
+    public long inserirConsulta(int idCliente, int idVeterinario) {
+        ContentValues values = new ContentValues();
+        values.put(Database.COL_ID_CLIENTE_CONSULTA, idCliente);
+        values.put(Database.COL_ID_VETERINARIO_CONSULTA, idVeterinario);
+
+        return database.insert(Database.TABLE_CONSULTAS, null, values);
     }
+
 
     public int atualizarConsulta(Consulta consulta) {
         ContentValues values = new ContentValues();
@@ -65,10 +74,11 @@ public class ConsultaDAO {
 
     @SuppressLint("Range")
     private Consulta cursorToConsulta(Cursor cursor) {
-        Consulta consulta = new Consulta();
-        consulta.setIdConsulta(cursor.getInt(cursor.getColumnIndex(Database.COL_ID_CONSULTA)));
-        consulta.setIdVeterinario(cursor.getInt(cursor.getColumnIndex(Database.COL_ID_VETERINARIO_CONSULTA)));
-        consulta.setIdCliente(cursor.getInt(cursor.getColumnIndex(Database.COL_ID_CLIENTE_CONSULTA)));
-        return consulta;
+        int idConsulta = cursor.getInt(cursor.getColumnIndex(Database.COL_ID_CONSULTA));
+        int idVeterinario = cursor.getInt(cursor.getColumnIndex(Database.COL_ID_VETERINARIO_CONSULTA));
+        int idCliente = cursor.getInt(cursor.getColumnIndex(Database.COL_ID_CLIENTE_CONSULTA));
+
+        return new Consulta(idConsulta, idCliente, idVeterinario);
     }
+
 }
