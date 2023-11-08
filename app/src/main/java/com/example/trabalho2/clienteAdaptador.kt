@@ -47,13 +47,13 @@ class clienteAdaptador : RecyclerView.Adapter<clienteAdaptador.clienteVerHolder>
         private var cpfCliente = view.findViewById<TextView>(R.id.cpfCliente)
         private var nomeAnimal = view.findViewById<TextView>(R.id.nomeAnimal)
         private var racaAnimal = view.findViewById<TextView>(R.id.racaAnimal)
-         var botaoDeletar = view.findViewById<Button>(R.id.botaoRemoverCliente)
+        var botaoDeletar = view.findViewById<Button>(R.id.botaoRemoverCliente)
 
         fun bindVer(std: Cliente){
-            nomeCliente.text = std.nome
-            cpfCliente.text = std.cpf
-            nomeAnimal.text = std.animal
-            racaAnimal.text = std.racaAnimal
+            nomeCliente.text = "Nome Cliente: " + std.nome
+            cpfCliente.text = "CPF: " + std.cpf
+            nomeAnimal.text = "Nome Animal: " + std.animal
+            racaAnimal.text = "Raça Animal: " + std.racaAnimal
         }
     }
 }

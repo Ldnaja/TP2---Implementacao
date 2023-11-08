@@ -61,8 +61,8 @@ class desmarcarConsultaAdaptador : RecyclerView.Adapter<desmarcarConsultaAdaptad
         var botaoDeletar = view.findViewById<Button>(R.id.botaoDesmarcarConsulta)
 
         fun bindVer(std: Consulta, nomeCliente: String?, nomeVeterinario: String?) {
-            nomeClienteDesmarcarConsulta.text = nomeCliente ?: "Cliente não encontrado"
-            nomeVeterinarioDesmarcarConsulta.text = nomeVeterinario ?: "Veterinário não encontrado"
+            nomeClienteDesmarcarConsulta.text = "Nome Cliente: " + (nomeCliente ?: "Cliente não encontrado")
+            nomeVeterinarioDesmarcarConsulta.text = "Nome Veterinário: " + (nomeVeterinario ?: "Veterinário não encontrado")
         }
     }
 }

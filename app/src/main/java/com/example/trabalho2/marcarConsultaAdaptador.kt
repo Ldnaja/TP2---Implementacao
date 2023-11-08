@@ -50,9 +50,9 @@ class marcarConsultaAdaptador : RecyclerView.Adapter<marcarConsultaAdaptador.mar
         private var crmvVeterinarioConsulta = view.findViewById<TextView>(R.id.crmvVeterinarioConsulta)
 
         fun bindVer(std: Veterinario){
-            nomeVeterinarioConsulta.text = std.nome
-            especializacaoVeterinarioConsulta.text = std.especializacao
-            crmvVeterinarioConsulta.text = std.crmv
+            nomeVeterinarioConsulta.text = "Nome Veterinario: " + std.nome
+            especializacaoVeterinarioConsulta.text = "Especialização: " + std.especializacao
+            crmvVeterinarioConsulta.text = "CRMV do Veterionario: " + std.crmv
         }
     }
 }

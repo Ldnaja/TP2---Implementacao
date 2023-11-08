@@ -58,7 +58,7 @@ class funcionarioAdaptador : RecyclerView.Adapter<funcionarioAdaptador.funcionar
         var botaoDeletar = view.findViewById<Button>(R.id.botaoRemoverFuncionario)
 
         fun bindVer(std: Funcionario){
-            loginFuncionario.text = std.login
+            loginFuncionario.text = "Login do Funcionario: " + std.login
         }
     }
 }

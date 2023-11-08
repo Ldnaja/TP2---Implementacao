@@ -47,9 +47,9 @@ class veterinarioAdaptador : RecyclerView.Adapter<veterinarioAdaptador.veterinar
         var botaoDeletar = view.findViewById<Button>(R.id.botaoRemoverVeterinario)
 
         fun bindVer(std: Veterinario){
-            nomeVeterinario.text = std.nome
-            especializacaoVeterinario.text = std.especializacao
-            crmvVeterinario.text = std.crmv
+            nomeVeterinario.text = "Nome Veterinario: " + std.nome
+            especializacaoVeterinario.text = "Especialização: " + std.especializacao
+            crmvVeterinario.text = "CRMV do Veterionario: " + std.crmv
         }
     }
 }
