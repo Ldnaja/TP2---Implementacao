@@ -35,21 +35,20 @@ class MainActivity : AppCompatActivity() {
             val login = campoLogin.text.toString()
             val senha = campoSenhaFuncionario.text.toString()
 
-            // Verifique se o funcionário existe no banco de dados
             funcionarioDAO.open()
             val funcionario = funcionarioDAO.obterFuncionarioPorLoginESenha(login, senha)
             funcionarioDAO.close()
 
             if (funcionario != null) {
-                // O funcionário foi encontrado, exiba uma mensagem de boas-vindas
+
                 val mensagemBoasVindas = "Bem-vindo, ${funcionario.getLogin()}"
                 Toast.makeText(this, mensagemBoasVindas, Toast.LENGTH_SHORT).show()
 
-                // Redirecione para a próxima tela
+
                 val intent = Intent(this, TelaGerenciamento::class.java)
                 startActivity(intent)
             } else {
-                // Funcionário não encontrado, exiba uma mensagem de erro
+
                 Toast.makeText(this, "Login ou senha incorretos", Toast.LENGTH_SHORT).show()
             }
         }
