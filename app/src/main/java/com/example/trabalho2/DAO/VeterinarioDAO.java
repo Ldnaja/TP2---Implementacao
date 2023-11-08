@@ -104,6 +104,27 @@ public class VeterinarioDAO {
         return veterinarios;
     }
 
+    public String obterNomeVeterinarioPorId(int veterinarioId) {
+        Cursor cursor = database.query(
+                Database.TABLE_VETERINARIOS,
+                new String[]{Database.COL_NOME_VETERINARIO},
+                Database.COL_ID_VETERINARIO + " = ?",
+                new String[]{String.valueOf(veterinarioId)},
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range") String nomeVeterinario = cursor.getString(cursor.getColumnIndex(Database.COL_NOME_VETERINARIO));
+            cursor.close();
+            return nomeVeterinario;
+        }
+
+        return null; // Caso o veterinário não seja encontrado
+    }
+
+
     @SuppressLint("Range")
     private Veterinario cursorToVeterinario(Cursor cursor) {
         Veterinario veterinario = new Veterinario();

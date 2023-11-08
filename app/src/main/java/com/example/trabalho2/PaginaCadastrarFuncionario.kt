@@ -1,5 +1,6 @@
 package com.example.trabalho2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -54,6 +55,8 @@ class PaginaCadastrarFuncionario : AppCompatActivity() {
                             campoLogin.text.clear()
                             campoSenha.text.clear()
                             exibirMensagem("Funcionário cadastrado com sucesso.")
+                            val intent = Intent(this@PaginaCadastrarFuncionario, MainActivity::class.java)
+                            startActivity(intent)
                         } else {
                             exibirMensagem("Erro ao cadastrar funcionário.")
                         }

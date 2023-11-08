@@ -102,6 +102,27 @@ public class ClienteDAO {
         return clientes;
     }
 
+    public String obterNomeClientePorId(int clienteId) {
+        Cursor cursor = database.query(
+                Database.TABLE_CLIENTES,
+                new String[]{Database.COL_NOME_CLIENTE},
+                Database.COL_ID_CLIENTE + " = ?",
+                new String[]{String.valueOf(clienteId)},
+                null,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            @SuppressLint("Range") String nomeCliente = cursor.getString(cursor.getColumnIndex(Database.COL_NOME_CLIENTE));
+            cursor.close();
+            return nomeCliente;
+        }
+
+        return null; // Caso o cliente não seja encontrado
+    }
+
+
     @SuppressLint("Range")
     private Cliente cursorToCliente(Cursor cursor) {
         Cliente cliente = new Cliente();
